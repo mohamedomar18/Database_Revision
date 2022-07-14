@@ -29,14 +29,17 @@ public class MainActivity extends AppCompatActivity {
         btnInsertRecord.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-
+                //startActivity
+                Intent i = new Intent(MainActivity.this, InsertActivity.class);
+                startActivity(i);
             }
         });
 
         btnRetrieveRecords.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, RetrieveActivity.class);
+                startActivity(i);
 
             }
         });

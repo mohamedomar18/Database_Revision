@@ -45,10 +45,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void insertTask(String content, int priority){
-
+        //table name? columns involved
         SQLiteDatabase db = this.getWritableDatabase();
-
-
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_CONTENT, content);
+        values.put(COLUMN_PRIORITY, priority);
+        db.insert(TABLE_NOTE, null, values);
+        db.close();
     }
 
     public ArrayList<String> getNotesInStrings() {
@@ -84,9 +87,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                //data retrieval
-
-
+                //data retrieval & reconstitute into iobjects
+                int id = cursor.getInt(0);
+                String description = cursor.getString(1);
+                String date = cursor.getString(2);
+                Note obj = new Note(id, description, date);
                 notes.add(obj);
             } while (cursor.moveToNext());
         }
@@ -97,4 +102,3 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 }
-

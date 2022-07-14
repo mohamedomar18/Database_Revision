@@ -25,6 +25,11 @@ public class Note {
         return priority;
     }
 
-    //What's here?
+    //What's here? -> toString()
+    @NonNull
+    @Override
+    public String toString() {
+        return "ID : " + id + "\nContent : " + content + "\nPriority : " + priority;
+    }
 
 }

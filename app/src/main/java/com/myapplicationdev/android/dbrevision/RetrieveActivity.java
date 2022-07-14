@@ -31,14 +31,14 @@ public class RetrieveActivity extends AppCompatActivity {
         lv = findViewById(R.id.lv);
 
         al = new ArrayList<>();
-        aa = new ArrayAdapter();
+        aa = new ArrayAdapter(RetrieveActivity.this, android.R.layout.simple_expandable_list_item_1, al);
         lv.setAdapter(aa);
 
         btnGetNotes.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 // Create the DBHelper object, passing in the activity's Context
-
+                DBHelper db = new DBHelper(RetrieveActivity.this);
 
                 // Insert a task
                 ArrayList<String> data = db.getNotesInStrings();
@@ -50,6 +50,7 @@ public class RetrieveActivity extends AppCompatActivity {
                     txt += (i+1) + ". " + data.get(i) + "\n";
                 }
                 //Setting results
+                tvResults.setText(txt);
 
 
                 //LIST VIEW
@@ -59,6 +60,7 @@ public class RetrieveActivity extends AppCompatActivity {
                 al.clear();
                 al.addAll(db2.getNotesInObjects());
                 aa.notifyDataSetChanged();
+                //re-populating vs recreating
 
             }
         });
